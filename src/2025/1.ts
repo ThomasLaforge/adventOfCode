@@ -1,4 +1,4 @@
-const data = [
+export const data = [
   "L45",
   "R35",
   "R42",
@@ -4100,7 +4100,7 @@ const data = [
   "L35"
 ];
 
-export const exoOnePartOne = () => {
+export const exoOnePartOne = (data: string[]) => {
   let start = 50;
   let cpt = 0;
 
@@ -4110,6 +4110,32 @@ export const exoOnePartOne = () => {
     start += direction === "L" ? -value : value;
     if (start % 100 === 0) {
       cpt++;
+    }
+  });
+
+  return cpt;
+};
+
+export const exoOnePartTwo = (data: string[]) => {
+  let start = 50;
+  let cpt = 0;
+
+  data.forEach((d) => {
+    const direction = d[0];
+    const value = parseInt(d.slice(1));
+
+    if (direction === "R") {
+      const end = start + value;
+      cpt += Math.floor(end / 100) - Math.floor(start / 100);
+      start = end % 100;
+    } else {
+      const target = start - value;
+      const A = target;
+      const B = start - 1;
+      cpt += Math.floor(B / 100) - Math.ceil(A / 100) + 1;
+
+      start = target % 100;
+      if (start < 0) start += 100;
     }
   });
 

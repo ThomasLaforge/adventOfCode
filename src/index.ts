@@ -1,3 +1,3 @@
-import { exoOnePartOne } from "./2025/1";
+import { data, exoOnePartTwo } from "./2025/1";
 
-console.log(exoOnePartOne());
+console.log(exoOnePartTwo(data));
